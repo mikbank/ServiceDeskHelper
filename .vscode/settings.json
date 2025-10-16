@@ -1,0 +1,5 @@
+{
+  "dotnet.defaultSolution": "ServiceDeskHelper.sln",
+  "dotnet.server.useOmnisharp": true,
+  "dotnet.testExplorer.enable": true
+}
