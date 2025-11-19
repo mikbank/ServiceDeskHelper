@@ -1,0 +1,60 @@
+@model ServiceDeskHelper.Web.Models.UsersListViewModel
+
+
+
+<h2>User List</h2>
+
+<form method="get" asp-controller="Users" asp-action="Index" class="mb-3">
+    <div class="row">
+        <div class="col-md-5">
+            <input type="text" name="searchQuery"
+                   value="@Model.SearchQuery"
+                   class="form-control"
+                   placeholder="Search by full name..." />
+        </div>
+
+        <div class="col-md-4">
+            <select name="department" class="form-select">
+                <option value="">All Departments</option>
+
+                @foreach (var dept in Model.Departments)
+                {
+                    <option value="@dept"
+                            selected="@(Model.SelectedDepartment == dept)">
+                        @dept
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary w-100">
+                Apply
+            </button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model.Users)
+        {
+            <tr>
+                <td>@u.Id</td>
+                <td>@u.FirstName @u.LastName</td>
+                <td>@u.Department</td>
+                <td>
+                    <a href="mailto:@u.Email">@u.Email</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
