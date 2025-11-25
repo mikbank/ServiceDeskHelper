@@ -1,0 +1,4 @@
+﻿Id,FirstName,LastName,Department,Email,
+1,Test,Testesen,Finance,9a001@eksamen.com,TRUE
+2,Test2,Testor,R&D,73e2a@eksamen.com,FALSE
+3,Test3,Tests,IT,34ha@eksamen.com,TRUE

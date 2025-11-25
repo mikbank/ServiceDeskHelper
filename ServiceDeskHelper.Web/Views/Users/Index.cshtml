@@ -1,4 +1,4 @@
-@model ServiceDeskHelper.Web.Models.UsersListViewModel
+@model ServiceDeskHelper.Web.Models.UsersListViewModel //this is the view for all users
 
 
 
@@ -10,7 +10,7 @@
             <input type="text" name="searchQuery"
                    value="@Model.SearchQuery"
                    class="form-control"
-                   placeholder="Search by full name..." />
+                   placeholder="Search for user..." />
         </div>
 
         <div class="col-md-4">
@@ -42,6 +42,7 @@
             <th>Name</th>
             <th>Department</th>
             <th>Email</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -53,6 +54,9 @@
                 <td>@u.Department</td>
                 <td>
                     <a href="mailto:@u.Email">@u.Email</a>
+                </td>
+                <td>
+                @await Html.PartialAsync("_UserStatusBadge", u)
                 </td>
             </tr>
         }

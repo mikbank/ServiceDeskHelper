@@ -1,8 +1,6 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ServiceDeskHelper.Core.Models;
 using ServiceDeskHelper.Core.Strategies;
-using System.Collections.Generic;
-using System.Linq;
+
 
 namespace ServiceDeskHelper.Tests.Strategies
 {
@@ -10,7 +8,7 @@ namespace ServiceDeskHelper.Tests.Strategies
     public class SearchByEmailStrategyTests
     {
         [TestMethod]
-        public void Search_GivenUsersList_WhenSearchingByEmail_ThenOnlyMatchingEmailIsReturned()
+        public void TestEmail()
         {
             // === Given ===
             var users = new List<User>
@@ -19,14 +17,14 @@ namespace ServiceDeskHelper.Tests.Strategies
                 new User(2, "Jane", "Doe", "HR", "jane@company.com"),
             };
 
-            var strategy = new SearchByEmailStrategy();
+            var strategy = new SearchByEmail();
 
             // === When ===
             var result = strategy.Search(users, "smith").ToList();
 
             // === Then ===
-            Assert.AreEqual(1, result.Count);
-            Assert.AreEqual("john.smith@company.com", result[0].Email);
+            Assert.AreEqual(1, result.Count,"Did not find expected amount, expected 1");
+            Assert.AreEqual("john.smith@company.com", result[0].Email,"Did not find user by Email");
         }
     }
 }

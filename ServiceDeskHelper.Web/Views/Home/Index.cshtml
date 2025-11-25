@@ -1,8 +1,35 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "ServiceDesk Helper – Exam Project";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+
+    <h1 class="display-5">ServiceDesk Helper</h1>
+    <p class="text-muted">
+        Exam Project – <strong>Avanceret Programmering</strong> (SmartLearn, Fall 2025)
+    </p>
+
+    <hr />
+
+    <p>
+        Velkommen til ServiceDesk Helper – et simpelt web-baseret værktøj udviklet som en del af eksamensprojektet 
+        i faget <em>Avanceret Programmering</em>. Applikationen demonstrerer centrale principper inden for:
+    </p>
+
+    <ul>
+        <li>Objektorienteret design</li>
+        <li>MVC arkitektur i ASP.NET Core</li>
+        <li>Repository Pattern og Dependency Injection</li>
+        <li>Strategy + Factory Patterns til bruger-søgning</li>
+        <li>Arbejdet med LINQ, Regular Expressions og softwarekvalitet</li>
+    </ul>
+
+    <p>
+        Du kan se alle brugere, søge i dem og filtrere dem ved at navigere til siden <strong>Users</strong>.
+    </p>
+
+    <a class="btn btn-primary" asp-controller="Users" asp-action="Index">
+        Gå til Users
+    </a>
+
 </div>

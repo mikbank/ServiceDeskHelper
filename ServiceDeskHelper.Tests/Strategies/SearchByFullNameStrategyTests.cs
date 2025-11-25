@@ -1,8 +1,5 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ServiceDeskHelper.Core.Models;
 using ServiceDeskHelper.Core.Strategies;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ServiceDeskHelper.Tests.Strategies
 {
@@ -10,7 +7,7 @@ namespace ServiceDeskHelper.Tests.Strategies
     public class SearchByFullNameStrategyTests
     {
         [TestMethod]
-        public void Search_GivenUsersList_WhenSearchingForFullName_ThenMatchingUsersAreReturned()
+        public void TestFullName()
         {
             // === Given ===
             var users = new List<User>
@@ -20,15 +17,15 @@ namespace ServiceDeskHelper.Tests.Strategies
                 new User(3, "Samantha", "Johnsen", "Finance", "sam@x.com")
             };
 
-            var strategy = new SearchByFullNameStrategy();
+            var strategy = new SearchByFullName();
 
             // === When ===
             var result = strategy.Search(users, "John").ToList();
 
             // === Then ===
-            Assert.AreEqual(2, result.Count);
-            Assert.IsTrue(result.Any(u => u.FirstName == "John"));
-            Assert.IsTrue(result.Any(u => u.LastName == "Johnsen"));
+            Assert.AreEqual(2, result.Count,"Did not find right amount of users");
+            Assert.IsTrue(result.Any(u => u.FirstName == "John"),"Did not find user on First name");
+            Assert.IsTrue(result.Any(u => u.LastName == "Johnsen"),"Did not find expected user on last name");
         }
     }
 }

@@ -1,0 +1,10 @@
+@model ServiceDeskHelper.Core.Models.User
+
+@if (Model.IsActive) //Partial to render if users are active or not, uses BS5 badges: https://www.w3schools.com/bootstrap5/bootstrap_badges.php
+{
+    <span class="badge bg-success">Active</span>
+}
+else
+{
+    <span class="badge bg-danger">Inactive</span>
+}

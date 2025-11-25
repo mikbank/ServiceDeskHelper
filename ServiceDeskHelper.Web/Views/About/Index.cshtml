@@ -1,0 +1,34 @@
+@model ServiceDeskHelper.Core.Config.AppSettings
+
+@{
+    ViewData["Title"] = "About this Application";
+}
+
+<div class="container mt-4">
+
+    <h1 class="display-5">About ServiceDesk Helper</h1>
+    <p class="text-muted">Exam Project – Avanceret Programmering, SmartLearn Fall 2025</p>
+
+    <hr />
+
+    <p>
+        Dette er en simpel ServiceDesk applikation udviklet som en del af eksamensprojektet 
+        i faget <strong>Avanceret Programmering</strong>. 
+        Her vises applikationens nuværende konfiguration indlæst fra <em>appsettings.json</em>.
+    </p>
+
+    <h4 class="mt-4">Application Settings</h4>
+
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th style="width: 200px;">Repository Mode</th>
+            <td>@Model.RepositoryMode</td>
+        </tr>
+        <tr>
+            <th>CSV Path</th>
+            <td>@Model.CsvPath</td>
+        </tr>
+    </table>
+
+    <a class="btn btn-primary mt-3" asp-controller="Home" asp-action="Index">Back to Home</a>
+</div>

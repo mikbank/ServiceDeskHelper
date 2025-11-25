@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ServiceDeskHelper.Core.Interfaces;
-using ServiceDeskHelper.Core.Strategies;
+using ServiceDeskHelper.Core.Factories;
 using ServiceDeskHelper.Core.Services;
 using ServiceDeskHelper.Web.Models;
 
@@ -18,37 +18,38 @@ public class UsersController : Controller
         var allUsers = _repo.GetAll();
 
         // 🔹 Create the ViewModel
-        var vm = new UsersListViewModel
+        var viewmodel = new UsersListViewModel
         {
-            SearchQuery = searchQuery,
+            SearchQuery = searchQuery, 
             SelectedDepartment = department,
-            Departments = allUsers
+            Departments = allUsers //here distinct departments are found via LINQ method syntax
                 .Select(u => u.Department)
                 .Distinct()
                 .OrderBy(d => d)
                 .ToList()
         };
 
-        // 🔹 Apply search
+        //  Search functionality
         if (!string.IsNullOrWhiteSpace(searchQuery))
         {
-            var strategy = new SearchByFullNameStrategy();
+            var strategy = UserSearchFactory.Create("all"); //searches all fields
             var processor = new UserSearchProcessor(strategy);
-            allUsers = processor.Search(allUsers, searchQuery);
+            allUsers = processor.Search(allUsers, searchQuery); 
         }
 
-        // 🔹 Apply department filter
+        // if department filter is set, apply it
         if (!string.IsNullOrWhiteSpace(department))
         {
             allUsers = allUsers
                 .Where(u => u.Department == department);
         }
 
-        // 🔹 Sort alphabetically by last name
-        vm.Users = allUsers
-            .OrderBy(u => u.LastName)
-            .ThenBy(u => u.FirstName);
+        // Sorts by last name, then first name
+        viewmodel.Users =
+            from u in allUsers
+            orderby u.LastName, u.FirstName
+            select u;
 
-        return View(vm);
+        return View(viewmodel);
     }
 }

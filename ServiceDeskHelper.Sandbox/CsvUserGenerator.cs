@@ -1,6 +1,8 @@
 using System.Text;
 
-public class CsvUserGenerator
+public class CsvUserGenerator 
+//csv generator to make a list of random users, used if csv is not available for, just run dotnet run --project .\ServiceDeskHelper.Sandbox\servicedeskhelper.sandbox.csproj
+//Uses a list for firstnames, lastnames and departments, to randomly generate users - this is pretty brute-force but works for this project.
 {
     private readonly string[] firstNames =
     {
@@ -22,7 +24,7 @@ public class CsvUserGenerator
         "IT", "Support", "Finance", "HR", "Sales", "R&D", "Management"
     };
 
-    private readonly Random random = new();
+    private readonly Random random = new(); //instantiate random, for use in user generation
 
     public string GenerateCsv(int count)
     {
@@ -34,9 +36,10 @@ public class CsvUserGenerator
             var firstName = firstNames[random.Next(firstNames.Length)];
             var lastName = lastNames[random.Next(lastNames.Length)];
             var department = departments[random.Next(departments.Length)];
-            var email = $"{Guid.NewGuid().ToString("N")[..5]}@eksamen.com";
+            var email = $"{Guid.NewGuid().ToString("N")[..5]}@eksamen.com"; 
+            var isActive = true; //always set to true for ease of demonstration
 
-            sb.AppendLine($"{i},{firstName},{lastName},{department},{email}");
+            sb.AppendLine($"{i},{firstName},{lastName},{department},{email},{isActive}");
         }
 
         return sb.ToString();
